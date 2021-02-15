@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="main.h" />
+    <ClInclude Include="minhook\MinHook.h">
+      <Filter>minhook</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="minhook\libMinHook.x86.lib">
+      <Filter>minhook</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="minhook">
+      <UniqueIdentifier>{76c24232-6881-45e9-b28b-4786cab4e522}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
