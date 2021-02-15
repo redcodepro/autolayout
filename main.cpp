@@ -1,53 +1,53 @@
-#include "main.h"
+Ôªø#include "main.h"
 
 uint32_t layout_change_mode = 1;
 
 std::map<wchar_t, wchar_t> rus_table =
 {
 	// Russian to English
-	{L'®', L'~'}, {L'\"', L'@'}, {L'π', L'#'}, {L';', L'$'},
-	{L':', L'^'}, {L'?', L'&'}, {L'…', L'Q'}, {L'÷', L'W'},
-	{L'”', L'E'}, {L' ', L'R'}, {L'≈', L'T'}, {L'Õ', L'Y'},
-	{L'√', L'U'}, {L'ÿ', L'I'}, {L'Ÿ', L'O'}, {L'«', L'P'},
-	{L'’', L'{'}, {L'⁄', L'}'}, {L'/', L'|'}, {L'‘', L'A'},
-	{L'€', L'S'}, {L'¬', L'D'}, {L'¿', L'F'}, {L'œ', L'G'},
-	{L'–', L'H'}, {L'Œ', L'J'}, {L'À', L'K'}, {L'ƒ', L'L'},
-	{L'∆', L':'}, {L'›', L'\"'}, {L'ﬂ', L'Z'}, {L'◊', L'X'},
-	{L'—', L'C'}, {L'Ã', L'V'}, {L'»', L'B'}, {L'“', L'N'},
-	{L'‹', L'M'}, {L'¡', L'<'}, {L'ﬁ', L'>'}, {L',', L'?'},
-	{L'∏', L'`'}, {L'È', L'q'}, {L'ˆ', L'w'}, {L'Û', L'e'},
-	{L'Í', L'r'}, {L'Â', L't'}, {L'Ì', L'y'}, {L'„', L'u'},
-	{L'¯', L'i'}, {L'˘', L'o'}, {L'Á', L'p'}, {L'ı', L'['},
-	{L'˙', L']'}, {L'Ù', L'a'}, {L'˚', L's'}, {L'‚', L'd'},
-	{L'‡', L'f'}, {L'Ô', L'g'}, {L'', L'h'}, {L'Ó', L'j'},
-	{L'Î', L'k'}, {L'‰', L'l'}, {L'Ê', L';'}, {L'˝', L'\''},
-	{L'ˇ', L'z'}, {L'˜', L'x'}, {L'Ò', L'c'}, {L'Ï', L'v'},
-	{L'Ë', L'b'}, {L'Ú', L'n'}, {L'¸', L'm'}, {L'·', L','},
-	{L'˛', L'.'}, {L'.', L'/'}
+	{L'–Å', L'~'}, {L'\"', L'@'}, {L'‚Ññ', L'#'}, {L';', L'$'},
+	{L':', L'^'}, {L'?', L'&'}, {L'–ô', L'Q'}, {L'–¶', L'W'},
+	{L'–£', L'E'}, {L'–ö', L'R'}, {L'–ï', L'T'}, {L'–ù', L'Y'},
+	{L'–ì', L'U'}, {L'–®', L'I'}, {L'–©', L'O'}, {L'–ó', L'P'},
+	{L'–•', L'{'}, {L'–™', L'}'}, {L'/', L'|'}, {L'–§', L'A'},
+	{L'–´', L'S'}, {L'–í', L'D'}, {L'–ê', L'F'}, {L'–ü', L'G'},
+	{L'–†', L'H'}, {L'–û', L'J'}, {L'–õ', L'K'}, {L'–î', L'L'},
+	{L'–ñ', L':'}, {L'–≠', L'\"'}, {L'–Ø', L'Z'}, {L'–ß', L'X'},
+	{L'–°', L'C'}, {L'–ú', L'V'}, {L'–ò', L'B'}, {L'–¢', L'N'},
+	{L'–¨', L'M'}, {L'–ë', L'<'}, {L'–Æ', L'>'}, {L',', L'?'},
+	{L'—ë', L'`'}, {L'–π', L'q'}, {L'—Ü', L'w'}, {L'—É', L'e'},
+	{L'–∫', L'r'}, {L'–µ', L't'}, {L'–Ω', L'y'}, {L'–≥', L'u'},
+	{L'—à', L'i'}, {L'—â', L'o'}, {L'–∑', L'p'}, {L'—Ö', L'['},
+	{L'—ä', L']'}, {L'—Ñ', L'a'}, {L'—ã', L's'}, {L'–≤', L'd'},
+	{L'–∞', L'f'}, {L'–ø', L'g'}, {L'—Ä', L'h'}, {L'–æ', L'j'},
+	{L'–ª', L'k'}, {L'–¥', L'l'}, {L'–∂', L';'}, {L'—ç', L'\''},
+	{L'—è', L'z'}, {L'—á', L'x'}, {L'—Å', L'c'}, {L'–º', L'v'},
+	{L'–∏', L'b'}, {L'—Ç', L'n'}, {L'—å', L'm'}, {L'–±', L','},
+	{L'—é', L'.'}, {L'.', L'/'}
 };
 
 std::map<wchar_t, wchar_t> eng_table =
 {
 	// English to Russian
-	{L'~', L'®'}, {L'@', L'\"'}, {L'#', L'π'}, {L'$', L';'},
-	{L'^', L':'}, {L'&', L'?'}, {L'Q', L'…'}, {L'W', L'÷'},
-	{L'E', L'”'}, {L'R', L' '}, {L'T', L'≈'}, {L'Y', L'Õ'},
-	{L'U', L'√'}, {L'I', L'ÿ'}, {L'O', L'Ÿ'}, {L'P', L'«'},
-	{L'{', L'’'}, {L'}', L'⁄'}, {L'|', L'/'}, {L'A', L'‘'},
-	{L'S', L'€'}, {L'D', L'¬'}, {L'F', L'¿'}, {L'G', L'œ'},
-	{L'H', L'–'}, {L'J', L'Œ'}, {L'K', L'À'}, {L'L', L'ƒ'},
-	{L':', L'∆'}, {L'\"', L'›'}, {L'Z', L'ﬂ'}, {L'X', L'◊'},
-	{L'C', L'—'}, {L'V', L'Ã'}, {L'B', L'»'}, {L'N', L'“'},
-	{L'M', L'‹'}, {L'<', L'¡'}, {L'>', L'ﬁ'}, {L'?', L','},
-	{L'`', L'∏'}, {L'q', L'È'}, {L'w', L'ˆ'}, {L'e', L'Û'},
-	{L'r', L'Í'}, {L't', L'Â'}, {L'y', L'Ì'}, {L'u', L'„'},
-	{L'i', L'¯'}, {L'o', L'˘'}, {L'p', L'Á'}, {L'[', L'ı'},
-	{L']', L'˙'}, {L'a', L'Ù'}, {L's', L'˚'}, {L'd', L'‚'},
-	{L'f', L'‡'}, {L'g', L'Ô'}, {L'h', L''}, {L'j', L'Ó'},
-	{L'k', L'Î'}, {L'l', L'‰'}, {L';', L'Ê'}, {L'\'', L'˝'},
-	{L'z', L'ˇ'}, {L'x', L'˜'}, {L'c', L'Ò'}, {L'v', L'Ï'},
-	{L'b', L'Ë'}, {L'n', L'Ú'}, {L'm', L'¸'}, {L',', L'·'},
-	{L'.', L'˛'}, {L'/', L'.'}
+	{L'~', L'–Å'}, {L'@', L'\"'}, {L'#', L'‚Ññ'}, {L'$', L';'},
+	{L'^', L':'}, {L'&', L'?'}, {L'Q', L'–ô'}, {L'W', L'–¶'},
+	{L'E', L'–£'}, {L'R', L'–ö'}, {L'T', L'–ï'}, {L'Y', L'–ù'},
+	{L'U', L'–ì'}, {L'I', L'–®'}, {L'O', L'–©'}, {L'P', L'–ó'},
+	{L'{', L'–•'}, {L'}', L'–™'}, {L'|', L'/'}, {L'A', L'–§'},
+	{L'S', L'–´'}, {L'D', L'–í'}, {L'F', L'–ê'}, {L'G', L'–ü'},
+	{L'H', L'–†'}, {L'J', L'–û'}, {L'K', L'–õ'}, {L'L', L'–î'},
+	{L':', L'–ñ'}, {L'\"', L'–≠'}, {L'Z', L'–Ø'}, {L'X', L'–ß'},
+	{L'C', L'–°'}, {L'V', L'–ú'}, {L'B', L'–ò'}, {L'N', L'–¢'},
+	{L'M', L'–¨'}, {L'<', L'–ë'}, {L'>', L'–Æ'}, {L'?', L','},
+	{L'`', L'—ë'}, {L'q', L'–π'}, {L'w', L'—Ü'}, {L'e', L'—É'},
+	{L'r', L'–∫'}, {L't', L'–µ'}, {L'y', L'–Ω'}, {L'u', L'–≥'},
+	{L'i', L'—à'}, {L'o', L'—â'}, {L'p', L'–∑'}, {L'[', L'—Ö'},
+	{L']', L'—ä'}, {L'a', L'—Ñ'}, {L's', L'—ã'}, {L'd', L'–≤'},
+	{L'f', L'–∞'}, {L'g', L'–ø'}, {L'h', L'—Ä'}, {L'j', L'–æ'},
+	{L'k', L'–ª'}, {L'l', L'–¥'}, {L';', L'–∂'}, {L'\'', L'—ç'},
+	{L'z', L'—è'}, {L'x', L'—á'}, {L'c', L'—Å'}, {L'v', L'–º'},
+	{L'b', L'–∏'}, {L'n', L'—Ç'}, {L'm', L'—å'}, {L',', L'–±'},
+	{L'.', L'—é'}, {L'/', L'.'}
 };
 
 void ChangeLayout(wchar_t *in, wchar_t break_symbol = L'\0', bool reverse = false)
@@ -56,11 +56,11 @@ void ChangeLayout(wchar_t *in, wchar_t break_symbol = L'\0', bool reverse = fals
 	do
 	{
 		if (*in == break_symbol)
-			return;
+			break;
 
 		if (reverse)
 		{
-			if (*in >= L'¿' && *in <= L'ˇ')
+			if (*in >= L'–ê' && *in <= L'—è')
 				now_russian = true;
 			else
 				if (*in >= L'A' && *in <= L'z')
@@ -85,7 +85,7 @@ void __fastcall hooked_ProcessInput(void* _this, DWORD edx)
 
 		if (input_box->m_nBufferSize > 2 && input_box->m_pwszBuffer[0] == L'.')
 		{
-			if (input_box->m_pwszBuffer[1] >= L'¿' && input_box->m_pwszBuffer[1] <= L'ˇ')
+			if (input_box->m_pwszBuffer[1] >= L'–ê' && input_box->m_pwszBuffer[1] <= L'—è')
 			{
 				ChangeLayout(input_box->m_pwszBuffer, ((layout_change_mode == 3) ? L' ' : L'\0'), (layout_change_mode == 1));
 			}
@@ -125,7 +125,7 @@ BOOL WINAPI DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved)
 			}
 
 			layout_change_mode = GetPrivateProfileInt("main", "change-mode", 1, ".\\CommandLayoutChanger.ini");
-			if (layout_change_mode < 0 || layout_change_mode > 3)
+			if (layout_change_mode > 3)
 				layout_change_mode = 1;
 
 			WritePrivateProfileString("main", "change-mode", std::to_string(layout_change_mode).c_str(), ".\\CommandLayoutChanger.ini");
