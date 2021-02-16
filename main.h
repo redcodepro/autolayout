@@ -3,7 +3,7 @@
 
 #include <windows.h>
 #include <string>
-#include <map>
+#include <unordered_map>
 
 #include "minhook/MinHook.h"
 #pragma comment(lib, "minhook/libMinHook.x86.lib")

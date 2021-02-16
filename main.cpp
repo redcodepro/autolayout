@@ -2,7 +2,7 @@
 
 uint32_t layout_change_mode = 1;
 
-std::map<wchar_t, wchar_t> rus_table =
+std::unordered_map<wchar_t, wchar_t> rus_table =
 {
 	// Russian to English
 	{L'Ё', L'~'}, {L'\"', L'@'}, {L'№', L'#'}, {L';', L'$'},
@@ -26,7 +26,7 @@ std::map<wchar_t, wchar_t> rus_table =
 	{L'ю', L'.'}, {L'.', L'/'}
 };
 
-std::map<wchar_t, wchar_t> eng_table =
+std::unordered_map<wchar_t, wchar_t> eng_table =
 {
 	// English to Russian
 	{L'~', L'Ё'}, {L'@', L'\"'}, {L'#', L'№'}, {L'$', L';'},
@@ -114,6 +114,7 @@ BOOL WINAPI DllMain(HMODULE hModule, DWORD reason, LPVOID lpReserved)
 			switch (ep)
 			{
 			case 0x31DF13:	orig_ProcessInput = (hookedProcessInput_t)(dwSAMPAddr + 0x65D30); break; // R1
+			case 0x3195DD:	orig_ProcessInput = (hookedProcessInput_t)(dwSAMPAddr + 0x65E00); break; // R2
 			case 0xCC4D0:	orig_ProcessInput = (hookedProcessInput_t)(dwSAMPAddr + 0x69260); break; // R3
 			case 0xCBCB0:	orig_ProcessInput = (hookedProcessInput_t)(dwSAMPAddr + 0x69990); break; // R4
 			default:
