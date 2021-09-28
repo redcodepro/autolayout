@@ -2,42 +2,41 @@
 #define __MAIN_H__
 
 #include <windows.h>
-#include <string>
+//#include <string>
 #include <unordered_map>
 
 #include "minhook/MinHook.h"
-#pragma comment(lib, "minhook/libMinHook.x86.lib")
-
-typedef void(__fastcall* hookedProcessInput_t)(void*, DWORD);
+#pragma comment(lib, "minhook/minhook.x32.lib")
 
 #pragma pack(push, 1)
 
-// DXUT
-struct stDXUTEditBox
+struct CDXUTEditBox
 {
 	uint8_t		stDXUTControl[0x4D];
 
-	wchar_t*	m_pwszBuffer;   // Buffer to hold text
-	int			m_nBufferSize;	// Size of the buffer allocated, in characters
+	wchar_t*	m_pwszBuffer;
+	int			m_nBufferSize;
 };
 
-// SAMP
-typedef void(__cdecl *CMDPROC)(PCHAR);
-struct stInputInfo
+struct CInput
 {
-	void									*pD3DDevice;
-	void									*pDXUTDialog;
-	stDXUTEditBox							*pDXUTEditBox;
-	CMDPROC									pCMDs[144];
-	char									szCMDNames[144][33];
-	int										iCMDCount;
-	int										iInputEnabled;
-	char									szInputBuffer[129];
-	char									szRecallBufffer[10][129];
-	char									szCurrentBuffer[129];
-	int										iCurrentRecall;
-	int										iTotalRecalls;
-	CMDPROC									pszDefaultCMD;
+	typedef void(__cdecl *CMDPROC)(char*);
+
+	class IDirect3DDevice9*	m_pDevice;
+	class CDXUTDialog*		m_pGameUi;
+	CDXUTEditBox*			m_pEditbox;
+	CMDPROC					m_pCommandProc[144];
+	char					m_szCommandName[144][33];
+	int						m_nCommandCount;
+	BOOL					m_bEnabled;
+	char					m_szInput[129];
+	char					m_szRecallBufffer[10][129];
+	char					m_szCurrentBuffer[129];
+	int						m_nCurrentRecall;
+	int						m_nTotalRecall;
+	CMDPROC					m_pDefaultCommand;
+
+	typedef void(__thiscall *ProcessInput_t)(CInput*);
 };
 
 #pragma pack(pop)

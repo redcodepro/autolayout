@@ -10,7 +10,7 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Library Include="minhook\libMinHook.x86.lib">
+    <Library Include="minhook\minhook.x32.lib">
       <Filter>minhook</Filter>
     </Library>
   </ItemGroup>
